@@ -107,4 +107,5 @@
 */
         SELECT EMP .*
         FROM SCOTT.EMP
-        WHERE HIREDATE > '1981';
+
+        WHERE HIREDATE > '01-JAN-1981';
