@@ -1,0 +1,499 @@
+SQL> /*
+SQL>  1] WAQTD THE SALARIES IN ASCENDING ORDER. 
+SQL> */
+SQL>      SELECT SAL
+  2       FROM EMP
+  3       ORDER BY SAL;
+
+       SAL
+----------
+       800
+       950
+      1100
+      1250
+      1250
+      1300
+      1500
+      1600
+      2450
+      2850
+      2975
+      3000
+      3000
+      5000
+
+14 rows selected.
+
+SQL> /*
+SQL>  2] WAQTD THE SALARIES IN DESCENDING ORDER.
+SQL> */
+SQL>     SELECT SAL
+  2      FROM EMP
+  3      ORDER BY SAL DESC;
+
+       SAL
+----------
+      5000
+      3000
+      3000
+      2975
+      2850
+      2450
+      1600
+      1500
+      1300
+      1250
+      1250
+      1100
+       950
+       800
+
+14 rows selected.
+
+SQL> /*
+SQL> 3] WAQTD THE NAMES IN ASCENDING ORDER. 
+SQL> */
+SQL>     SELECT ENAME 
+  2      FROM SAL
+  3      ORDER BY SAL;
+    FROM SAL
+         *
+ERROR at line 2:
+ORA-00942: table or view does not exist
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1      SELECT ENAME
+  2      FROM SAL
+  3*     ORDER BY ENAME
+SQL> /
+    FROM SAL
+         *
+ERROR at line 2:
+ORA-00942: table or view does not exist
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1      SELECT ENAME
+  2      FROM EMP
+  3*     ORDER BY ENAME
+SQL> /
+
+ENAME
+----------
+ADAMS
+ALLEN
+BLAKE
+CLARK
+FORD
+JAMES
+JONES
+KING
+MARTIN
+MILLER
+SCOTT
+SMITH
+TURNER
+WARD
+
+14 rows selected.
+
+SQL> /*
+SQL> 4] WAQTD THE NAMES IN DESCENDING ORDER. 
+SQL> */
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  ORDER BY ENAME DESC;
+
+ENAME
+----------
+WARD
+TURNER
+SMITH
+SCOTT
+MILLER
+MARTIN
+KING
+JONES
+JAMES
+FORD
+CLARK
+BLAKE
+ALLEN
+ADAMS
+
+14 rows selected.
+
+SQL> /*
+SQL> 5] WAQTD THE ANNUAL SALARIES IN ASCENDING ORDER.
+SQL> */
+SQL> SELECT SAL*12 AS "ANNUAL SALARY"
+  2  FROM EMP
+  3  ORDER BY SAL*12;
+
+ANNUAL SALARY
+-------------
+         9600
+        11400
+        13200
+        15000
+        15000
+        15600
+        18000
+        19200
+        29400
+        34200
+        35700
+        36000
+        36000
+        60000
+
+14 rows selected.
+
+SQL> /*
+SQL> 6] WAQTD THE ANNUAL SALARIES IN DESCENDING ORDER. 
+SQL> */
+SQL> SELECT SAL*12 AS "ANNUAL SALARY"
+  2  FROM EMP
+  3  ORDER BY ANNUAL SALARY DESC;
+ORDER BY ANNUAL SALARY DESC
+                *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SAL*12 AS "ANNUAL SALARY"
+  2  FROM EMP
+  3* ORDER BY SAL*12 DESC
+SQL> /
+
+ANNUAL SALARY
+-------------
+        60000
+        36000
+        36000
+        35700
+        34200
+        29400
+        19200
+        18000
+        15600
+        15000
+        15000
+        13200
+        11400
+         9600
+
+14 rows selected.
+
+SQL> /*
+SQL> 7] WAQTD THE HALFTERM SALARIES IN ASCENDING ORDER.
+SQL> */
+SQL> SELECT SAL*6 AS "HALFTERM SALARY"
+  2  FROM EMP
+  3  ORDER BY SAL*6 ;
+
+HALFTERM SALARY
+---------------
+           4800
+           5700
+           6600
+           7500
+           7500
+           7800
+           9000
+           9600
+          14700
+          17100
+          17850
+          18000
+          18000
+          30000
+
+14 rows selected.
+
+SQL> /*
+SQL> 8] WAQTD THE HALFTERM SALARIES IN DESCENDING ORDER. 
+SQL> */
+SQL> SELECT SAL*6 AS "HALFTERM SALARY"
+  2  FROM EMP
+  3  ORDER BY SAL*6 DESC;
+
+HALFTERM SALARY
+---------------
+          30000
+          18000
+          18000
+          17850
+          17100
+          14700
+           9600
+           9000
+           7800
+           7500
+           7500
+           6600
+           5700
+           4800
+
+14 rows selected.
+
+SQL> /*
+SQL> 9] WAQTD NAMES OF AS EMP WHO ARE EARNING LESS THAN 
+SQL> 1200 RPS IN ASCENDING ORDER. 
+SQL> */
+SQL> SELECT ENAME 
+  2  FROM EMP
+  3  WHERE SAL <= 1200
+  4  ORDER BY ENAME;
+
+ENAME
+----------
+ADAMS
+JAMES
+SMITH
+
+SQL> /*
+SQL> 10] WAQTD DIFFERENT DESIGNATIONS IN EMP TABLE IN 
+SQL> ASCENDING ORDER. 
+SQL> */
+SQL> SELECT DISTINCT JOB
+  2  FROM EMP
+  3  ORDER BY JOB ;
+
+JOB
+---------
+ANALYST
+CLERK
+MANAGER
+PRESIDENT
+SALESMAN
+
+SQL> /*
+SQL> 11] WAQTD NAMES OF AN EMP WORKING AS 'SALESMAN' OR 
+SQL> 'PRESIDENT' IN DEPT NO 20 OR 30 & HIRED AFTER 1980 & HE GETS 
+SQL> COMMISSION MORE THAN 300 RPS & HIS NAME MUST HAVE 3RD 
+SQL> CHAR AS 'R' & PRINT HIS NAME IN DESCENDING ORDER.
+SQL> */
+SQL> SELECT ENAME 
+  2  FROM EMP
+  3  WHERE JOB IN ('SALESMAN' , 'PRESIDENT') AND
+  4        DEPTNO IN (20 , 30)
+  5        HIREDATE > '31-DEC-1980' AND
+  6        COMM > 300 AND
+  7        ENAME LIKE '__R%' AND
+  8  ORDER BY ENAME DESC;
+      HIREDATE > '31-DEC-1980' AND
+      *
+ERROR at line 5:
+ORA-00933: SQL command not properly ended
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME
+  2  FROM EMP
+  3  WHERE JOB IN ('SALESMAN' , 'PRESIDENT') AND
+  4        DEPTNO IN (20 , 30) AND
+  5        HIREDATE > '31-DEC-1980' AND
+  6        COMM > 300 AND
+  7        ENAME LIKE '__R%' AND
+  8* ORDER BY ENAME DESC
+  9  /
+ORDER BY ENAME DESC
+*
+ERROR at line 8:
+ORA-00936: missing expression
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME
+  2  FROM EMP
+  3  WHERE JOB IN ('SALESMAN' , 'PRESIDENT') AND
+  4        DEPTNO IN (20 , 30) AND
+  5        HIREDATE > '31-DEC-1980' AND
+  6        COMM > 300 AND
+  7        ENAME LIKE '__R%' AND
+  8* ORDER BY ENAME DESC ;
+SQL> /
+ORDER BY ENAME DESC ;
+*
+ERROR at line 8:
+ORA-00936: missing expression
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE JOB IN ('SALESMAN' , 'PRESIDENT') AND
+  4        DEPTNO IN (20, 30) AND
+  5        HIREDATE > '31-DEC-80' AND
+  6        COMM > 300 AND
+  7        ENAME LIKE '__R%' AND
+  8  ORDER BY ENAME DESC;
+ORDER BY ENAME DESC
+*
+ERROR at line 8:
+ORA-00936: missing expression
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME
+  2  FROM EMP
+  3  WHERE JOB IN ('SALESMAN' , 'PRESIDENT') AND
+  4        DEPTNO IN (20, 30) AND
+  5        HIREDATE > '31-DEC-80' AND
+  6        COMM > 300 AND
+  7        ENAME LIKE '__R%'
+  8* ORDER BY ENAME DESC ;
+SQL> /
+ORDER BY ENAME DESC ;
+                    *
+ERROR at line 8:
+ORA-00911: invalid character
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE JOB IN ('SALESMAN' , 'PRESIDENT') AND
+  4        DEPTNO IN (20.30) AND
+  5        HIREDATE > '31-DEC-80' AND
+  6        COMM > 300 AND
+  7        ENAME LIKE '__R%'
+  8  ORDER BY ENAME DESC;
+
+no rows selected
+
+SQL> /*
+SQL> 12] WAQTD THE 35% HIKE SALARY  FOR ALL THE EMP'S IN 
+SQL> ASCENDING ORDER. 
+SQL> */
+SQL> SELECT SAL+SAL*35/100 AS " 35% HIKE"
+  2  FROM EMP
+  3  ORDER BY SAL+SAL*35/100;
+
+  35% HIKE
+----------
+      1080
+    1282.5
+      1485
+    1687.5
+    1687.5
+      1755
+      2025
+      2160
+    3307.5
+    3847.5
+   4016.25
+      4050
+      4050
+      6750
+
+14 rows selected.
+
+SQL> /*
+SQL> 13] WAQTD 49% DEDUCTION IN ANNUAL SALARY FOR ALL THE 
+SQL> EMP'S IN DESCENDING ORDER.
+SQL> */
+SQL> SELECT SAL-SAL*49/100 AS "49% DEDUCTION"
+  2  FROM EMP
+  3  ORDER BY SAL-SAL*49/100 DESC;
+
+49% DEDUCTION
+-------------
+         2550
+         1530
+         1530
+      1517.25
+       1453.5
+       1249.5
+          816
+          765
+          663
+        637.5
+        637.5
+          561
+        484.5
+          408
+
+14 rows selected.
+
+SQL> /*
+SQL> 14] WAQTD NAMES OF EMP EARNING MAXIMUM SALARY TO 
+SQL> MINIMUM SALARY IN PROPER ORDER. 
+SQL> */
+SQL> SELECT ENAME
+  2  FROM EMO
+  3  
+SQL> SELECT ENAME 
+  2  FROM EMP
+  3  ORDER BY DESC;
+ORDER BY DESC
+         *
+ERROR at line 3:
+ORA-00936: missing expression
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  ORDER BY ENAME DESC;
+
+ENAME
+----------
+WARD
+TURNER
+SMITH
+SCOTT
+MILLER
+MARTIN
+KING
+JONES
+JAMES
+FORD
+CLARK
+BLAKE
+ALLEN
+ADAMS
+
+14 rows selected.
+
+SQL> /*
+SQL> 15] WAQTD 32% HIKE IN HALF TERM SALARY FOR ALL THE EMP'S 
+SQL> IN DESCENDING MANNER. 
+SQL> */
+SQL> 
+SQL> SELECT SAL*6+SAL*6*32/100 AS HIKE
+  2  FROM EMP
+  3  ORDER BY HIKE DESC;
+
+      HIKE
+----------
+     39600
+     23760
+     23760
+     23562
+     22572
+     19404
+     12672
+     11880
+     10296
+      9900
+      9900
+      8712
+      7524
+      6336
+
+14 rows selected.
+
+SQL> 
